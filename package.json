@@ -1,0 +1,25 @@
+{
+  "name": "recurweb",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Web GLSL sandbox for working on recur shaders",
+  "homepage": "https://konsumer.js.org/recurweb/",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "David Konsumer (konsumer)",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.10",
+    "tailwindcss": "^3.4.11",
+    "vite": "^5.4.4"
+  },
+  "dependencies": {
+    "glslCanvas": "^0.2.6",
+    "prism-theme-vars": "^0.2.5"
+  }
+}

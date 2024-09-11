@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>recur</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="\favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <script src="src/prism.js"></script>
+    <script src="https://live.prismjs.com/src/prism-live.js"></script>
+  </head>
+  <body class=" m-0">
+    <div class="flex h-screen">
+<div class="w-2/3 p-4 h-screen">
+<textarea id="code" class="prism-live language-glsl">// Author:
+// Title:
+
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+// current time since start, same as iTime on shadertoy
+uniform float u_time;
+
+// surface resolution, same as iResolution on shadertoy
+uniform vec2 u_resolution;
+
+// Input textures, same as iChannel0/iChannel1 on shadertoy
+// you can choose these with tex inputs (on right)
+// or use a URL
+// or set to "WEBCAM"
+uniform sampler2D u_tex0; // hypnocat.png
+uniform sampler2D u_tex1; // android-chrome-512x512.png
+
+// these are input-knobs (0.0 - 1.0)
+uniform float u_x0;
+uniform float u_x1;
+uniform float u_x2;
+uniform float u_x3;
+
+void main() {
+  // scaled pixel-position
+  vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+
+  // input 1 is mix-fader for tex0/1
+  gl_FragColor = mix(texture2D(u_tex0, uv), texture2D(u_tex1, uv), u_x0);
+}</textarea></div>
+      <div id="preview" class="pt-4 pr-4 w-1/3">
+        <canvas id="canvas" width="500" height="500" class="w-full"></canvas>
+        <div class="flex gap-2 flex-col mt-2">
+          <div class="flex flex-row gap-2">
+            <input class="range"  id="x1" type="range" min="0" max="1" value="0" step="0.01" />
+            <label for="x1">0.00</label>
+          </div>
+          <div class="flex flex-row gap-2">
+            <input class="range"  id="x2" type="range" min="0" max="1" value="0" step="0.01" />
+            <label for="x2">0.00</label>
+          </div>
+          <div class="flex flex-row gap-2">
+            <input class="range"  id="x3" type="range" min="0" max="1" value="0" step="0.01" />
+            <label for="x3">0.00</label>
+          </div>
+          <div class="flex flex-row gap-2">
+            <input class="range"  id="x4" type="range" min="0" max="1" value="0" step="0.01" />
+            <label for="x4">0.00</label>
+          </div>
+          <div class="flex gap-2">
+            <label class="btn btn-primary grow">
+              tex0
+              <input type="file" accept="image/*, video/*" id="tex0" class="hidden" />
+            </label>
+            <label class="btn btn-primary grow">
+              tex1
+              <input type="file" accept="image/*, video/*" id="tex1" class="hidden" />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
