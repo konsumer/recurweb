@@ -1,11 +1,5 @@
 import GlslCanvas from 'glslCanvas'
 
-import './style.css'
-import 'prism-theme-vars/base.css'
-import 'prism-theme-vars/themes/vitesse-dark.css'
-
-/* global requestAnimationFrame */
-
 // my UI
 const $canvas = document.getElementById('canvas')
 const $preview = document.getElementById('preview')
@@ -55,11 +49,14 @@ const convertBase64 = (file) => {
 
 // replace the tex uniform-def in code with new url
 function setTex (index, url) {
-  const r = new RegExp(`^[ \t]*uniform *float *u_x${index} *;(.*)`, 'gm')
+  const r = new RegExp(`^[ \t]*uniform *sampler2D *u_tex${index} *;(.*)`, 'gm')
   const m = r.exec($code.value)
   if (m && m[0]) {
-    $code.value = $code.value.replace(r, `uniform float u_x${index}; // ${url}`)
+    const newline = `uniform sampler2D u_tex${index}; // ${url}`
+    $code.value = $code.value.replace(r, newline)
     $code.dispatchEvent(new Event('input'))
+  } else {
+    $code.value = `${newline}\n${$code.value}`
   }
 }
 
