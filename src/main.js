@@ -51,12 +51,13 @@ const convertBase64 = (file) => {
 function setTex (index, url) {
   const r = new RegExp(`^[ \t]*uniform *sampler2D *u_tex${index} *;(.*)`, 'gm')
   const m = r.exec($code.value)
+  const newline = `uniform sampler2D u_tex${index}; // ${url}`
   if (m && m[0]) {
-    const newline = `uniform sampler2D u_tex${index}; // ${url}`
     $code.value = $code.value.replace(r, newline)
     $code.dispatchEvent(new Event('input'))
   } else {
-    $code.value = `${newline}\n${$code.value}`
+    $code.value = `${newline}\n\n${$code.value}`
+    $code.dispatchEvent(new Event('input'))
   }
 }
 
