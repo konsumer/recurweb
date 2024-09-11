@@ -1,5 +1,11 @@
 import GlslCanvas from 'glslCanvas'
 
+import './prism/prism.css'
+import './prism/live/prism-live.css'
+import './prism/prism.js'
+import './prism/live/prism-live.js'
+import './style.css'
+
 // my UI
 const $canvas = document.getElementById('canvas')
 const $preview = document.getElementById('preview')
