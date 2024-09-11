@@ -17,6 +17,8 @@ jobs:
         run: npm ci
       - name: Build project
         run: npm run build
+      - name: Fix perms
+        run: chmod 755 -R dist
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
         with:
