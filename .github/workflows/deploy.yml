@@ -17,13 +17,10 @@ jobs:
         run: npm ci
       - name: Build project
         run: npm run build
-      - name: Fix perms
-        run: chmod 755 -R dist
       - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: github-pages
-          path: ./dist
+          path: dist
   deploy:
     needs: build
     permissions:
@@ -34,8 +31,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Configure Pages
-        uses: actions/configure-pages@v4
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v1
