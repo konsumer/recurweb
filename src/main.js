@@ -67,6 +67,10 @@ function setTex (index, url) {
     $code.dispatchEvent(new Event('input'))
     preview.loadTexture(`u_tex${index}`, url, {})
   }
+  // update other uniforms
+  for (const $k of $knobs) {
+    preview.setUniform(`u_x${i}`, parseFloat($k.value))
+  }
 }
 
 // add file tex handlers
