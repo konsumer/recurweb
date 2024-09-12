@@ -1,4 +1,6 @@
-import GlslCanvas from 'glslCanvas'
+// import GlslCanvas from 'glslCanvas'
+
+import GlslCanvas from './glsl_canvas.js'
 
 import './prism/prism.css'
 import './prism/live/prism-live.css'
@@ -47,46 +49,16 @@ for (const i in $knobs) {
   })
 }
 
-// turn a file into a base64 URL
-const convertBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader()
-    fileReader.readAsDataURL(file)
-
-    fileReader.onload = () => {
-      resolve(fileReader.result)
-    }
-
-    fileReader.onerror = (error) => {
-      reject(error)
-    }
-  })
-}
-
-// replace the tex uniform-def in code with new url
-function setTex (index, url) {
-  const r = new RegExp(`^[ \t]*uniform *sampler2D *u_tex${index} *;(.*)`, 'gm')
-  const m = r.exec($code.value)
-  const newline = `uniform sampler2D u_tex${index}; // ${url}`
-  if (m && m[0]) {
-    $code.value = $code.value.replace(r, newline)
-    $code.dispatchEvent(new Event('input'))
-    preview.loadTexture(`u_tex${index}`, url, {})
-  } else {
-    $code.value = `${newline}\n\n${$code.value}`
-    $code.dispatchEvent(new Event('input'))
-    preview.loadTexture(`u_tex${index}`, url, {})
-  }
-}
-
 // add file tex handlers
 for (const i in $tex) {
   $tex[i].addEventListener('change', async e => {
     const file = e?.target?.files[0]
     if (file) {
-      // these creatres shorter URLs (but non-sharable code)
-      setTex(i, URL.createObjectURL(file))
-      // setTex(i, await convertBase64(file))
+      preview.loadTexture(`u_tex${i}`, URL.createObjectURL(file), file.type)
     }
   })
 }
+
+// load some initial textures, for fun
+preview.loadTexture('u_tex0', 'britney.mp4', 'video/mp4')
+preview.loadTexture('u_tex1', 'hypnocat.png', 'image/png')

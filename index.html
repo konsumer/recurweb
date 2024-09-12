@@ -26,8 +26,8 @@ uniform float u_time;
 uniform vec2 u_resolution;
 
 // Input textures, same as iChannel0/iChannel1 on shadertoy
-uniform sampler2D u_tex0; // hypnocat.png
-uniform sampler2D u_tex1; // https://prismjs.com/assets/img/spectrum.png
+uniform sampler2D u_tex0;
+uniform sampler2D u_tex1;
 
 // these are input-knobs (0.0 - 1.0)
 uniform float u_x0;
@@ -64,11 +64,11 @@ void main() {
           <div class="flex gap-2">
             <label class="btn btn-primary grow">
               tex0
-              <input type="file" accept="image/*," id="tex0" class="hidden" />
+              <input type="file" accept="image/*,video/*" id="tex0" class="hidden" />
             </label>
             <label class="btn btn-primary grow">
               tex1
-              <input type="file" accept="image/*" id="tex1" class="hidden" />
+              <input type="file" accept="image/*,video/*" id="tex1" class="hidden" />
             </label>
           </div>
         </div>

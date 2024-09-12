@@ -19,6 +19,6 @@
     "vite": "^5.4.4"
   },
   "dependencies": {
-    "glslCanvas": "^0.2.6"
+    "three": "^0.168.0"
   }
 }
