@@ -74,6 +74,7 @@ for (const i in $tex) {
   $tex[i].addEventListener('change', async e => {
     const file = e?.target?.files[0]
     if (file) {
+      // these creatres shorter URLs (but non-sharable code)
       setTex(i, URL.createObjectURL(file))
       // setTex(i, await convertBase64(file))
     }
