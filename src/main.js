@@ -14,13 +14,15 @@ const $knobLabels = [...document.querySelectorAll('.range + label')]
 const $code = document.getElementById('code')
 const $tex = [...document.querySelectorAll('input[type="file"]')]
 
-// Hash is gist.
-if (document.location.hash) {
-  const url = `https://gist.githubusercontent.com/${document.location.hash.slice(1)}`
-  const shader = await fetch(url).then(r => r.text())
-  $code.value = shader
-  $code.dispatchEvent(new Event('input'))
+async function updateFromHash () {
+  if (document.location.hash) {
+    const url = `https://gist.githubusercontent.com/${document.location.hash.slice(1)}`
+    const shader = await fetch(url).then(r => r.text())
+    $code.value = shader
+    $code.dispatchEvent(new Event('input'))
+  }
 }
+updateFromHash()
 
 $code.addEventListener('input', e => {
   preview.load($code.value)
