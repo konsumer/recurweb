@@ -21,6 +21,10 @@ if (document.location.hash) {
 
 $code.addEventListener('input', e => {
   preview.load($code.value)
+  // update input uniforms
+  for (const $k of $knobs) {
+    preview.setUniform(`u_x${i}`, parseFloat($k.value))
+  }
 })
 
 const preview = new GlslCanvas($canvas)
@@ -33,8 +37,6 @@ for (const i in $knobs) {
     $knobLabels[i].innerText = v.toFixed(2)
     preview.setUniform(`u_x${i}`, v)
   })
-  // set initial value, so they are in sync
-  preview.setUniform(`u_x${i}`, 0)
 }
 
 // turn a file into a base64 URL
@@ -66,10 +68,6 @@ function setTex (index, url) {
     $code.value = `${newline}\n\n${$code.value}`
     $code.dispatchEvent(new Event('input'))
     preview.loadTexture(`u_tex${index}`, url, {})
-  }
-  // update other uniforms
-  for (const $k of $knobs) {
-    preview.setUniform(`u_x${i}`, parseFloat($k.value))
   }
 }
 
