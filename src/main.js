@@ -24,6 +24,8 @@ async function updateFromHash () {
 }
 updateFromHash()
 
+window.addEventListener('hashchange', updateFromHash)
+
 $code.addEventListener('input', e => {
   preview.load($code.value)
   // update input uniforms
