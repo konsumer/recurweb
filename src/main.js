@@ -14,9 +14,12 @@ const $knobLabels = [...document.querySelectorAll('.range + label')]
 const $code = document.getElementById('code')
 const $tex = [...document.querySelectorAll('input[type="file"]')]
 
-// handle URL, limited to 2MB
+// Hash is gist.
 if (document.location.hash) {
-  $code.value = atob(decodeURIComponent(document.location.hash.slice(1)))
+  const url = `https://gist.githubusercontent.com/${document.location.hash.slice(1)}`
+  const shader = await fetch(url).then(r => r.text())
+  $code.value = shader
+  $code.dispatchEvent(new Event('input'))
 }
 
 $code.addEventListener('input', e => {
