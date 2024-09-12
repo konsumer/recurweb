@@ -22,8 +22,9 @@ if (document.location.hash) {
 $code.addEventListener('input', e => {
   preview.load($code.value)
   // update input uniforms
+  let i = 0
   for (const $k of $knobs) {
-    preview.setUniform(`u_x${i}`, parseFloat($k.value))
+    preview.setUniform(`u_x${i++}`, parseFloat($k.value))
   }
 })
 
