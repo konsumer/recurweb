@@ -61,9 +61,11 @@ function setTex (index, url) {
   if (m && m[0]) {
     $code.value = $code.value.replace(r, newline)
     $code.dispatchEvent(new Event('input'))
+    preview.loadTexture(`u_tex${index}`, url, {})
   } else {
     $code.value = `${newline}\n\n${$code.value}`
     $code.dispatchEvent(new Event('input'))
+    preview.loadTexture(`u_tex${index}`, url, {})
   }
 }
 
@@ -72,7 +74,8 @@ for (const i in $tex) {
   $tex[i].addEventListener('change', async e => {
     const file = e?.target?.files[0]
     if (file) {
-      setTex(i, await convertBase64(file))
+      setTex(i, URL.createObjectURL(file))
+      // setTex(i, await convertBase64(file))
     }
   })
 }
