@@ -6,7 +6,7 @@ It's deployed [here](https://konsumer.js.org/recurweb/). You can also point at a
 
 - [chromakey](https://konsumer.js.org/recurweb/#konsumer/c2c1045d7040a2eceef3a73242abcb92/raw/51eedceefd1e3e31ef4b174732644aa2b26e19ea/chromakey.frag) - 2 textures
 - [hypno](https://konsumer.js.org/recurweb/#konsumer/c2c1045d7040a2eceef3a73242abcb92/raw/51eedceefd1e3e31ef4b174732644aa2b26e19ea/hypno.frag) - 0 textures, knob-controlled
-- [kaleidescope](https://konsumer.js.org/recurweb/#konsumer/c2c1045d7040a2eceef3a73242abcb92/raw/51eedceefd1e3e31ef4b174732644aa2b26e19ea/kaleidescope.frag)  - 1 texture, knob-controlled
+- [kaleidescope](https://konsumer.js.org/recurweb/#konsumer/c2c1045d7040a2eceef3a73242abcb92/raw/f67e17038ed7d995541b14ea08e36109be2ef40c/kaleidescope.frag)  - 1 texture, knob-controlled
 - [trippy](https://konsumer.js.org/recurweb/#konsumer/c2c1045d7040a2eceef3a73242abcb92/raw/51eedceefd1e3e31ef4b174732644aa2b26e19ea/trippy.frag) - 0 textures, knob-controlled
 - [wobble](https://konsumer.js.org/recurweb/#konsumer/c2c1045d7040a2eceef3a73242abcb92/raw/69a3e0e334799bb93e7253e9cbc3776de3f12ef7/wobble.frag) 1 textures, knob-controlled
 
